@@ -205,7 +205,7 @@ export function ApprovalsPanel() {
               disabled={isActing}
               className="btn btn-secondary h-10"
             >
-              <MessageSquare className="w-4 h-4" />
+            <MessageSquare className="w-4 h-4" />
               Regenerate
             </button>
             <button
