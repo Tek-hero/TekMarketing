@@ -30,9 +30,13 @@ export async function GET(request: NextRequest) {
       prisma.activityLog.count({ where }),
     ])
 
-    return NextResponse.json({ logs, total, limit, offset })
+    return NextResponse.json({
+      logs,
+      total,
+      hasMore: offset + limit < total,
+    })
   } catch (error) {
     console.error('Failed to fetch activity logs:', error)
-    return NextResponse.json({ error: 'Failed to load activity' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to load activity history' }, { status: 500 })
   }
 }
