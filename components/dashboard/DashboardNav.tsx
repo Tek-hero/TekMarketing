@@ -54,10 +54,6 @@ export function AgentStatusBar() {
         onClick={() => alert("Pause scheduled runs coming soon. Manual cycles still work.")}
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#111113] border border-[#27272a] text-[#a1a1aa] hover:text-[#f4f4f5] hover:border-[#3f3f46] transition-colors"
       >
-        <button 
-        onClick={() => alert("Pause scheduled runs coming soon. Manual cycles still work.")}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#111113] border border-[#27272a] text-[#a1a1aa] hover:text-[#f4f4f5] hover:border-[#3f3f46] transition-colors"
-      >
         <PauseCircle className="w-3.5 h-3.5" />
         <span>Pause Agent</span>
       </button>
