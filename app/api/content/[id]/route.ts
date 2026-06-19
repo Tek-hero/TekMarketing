@@ -22,7 +22,7 @@ export async function PATCH(
 
     await prisma.activityLog.create({
       data: {
-        type: 'CONTENT_REGENERATED', // reuse for now, or we can add EDITED later
+        type: 'CONTENT_REGENERATED',
         summary: `Edited ${updated.platform} content`,
         details: { contentItemId: id, platform: updated.platform },
         contentItemId: id,
