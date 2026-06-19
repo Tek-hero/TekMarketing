@@ -16,7 +16,6 @@ export async function GET() {
       }),
     ])
 
-    // Check if brand exists
     const brand = await prisma.brandContext.findFirst()
 
     return NextResponse.json({
@@ -24,14 +23,12 @@ export async function GET() {
       pendingCount,
       latestRun: latestRun ? {
         ...latestRun,
-        // Include summary for display
         summary: latestRun.summary,
       } : null,
       hasBrand: !!brand,
     })
   } catch (error) {
     console.error('Dashboard activity error:', error)
-    // Return safe fallback
     return NextResponse.json({
       recentLogs: [],
       pendingCount: 0,
