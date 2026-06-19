@@ -148,7 +148,10 @@ async function generateGoogleImage({
       | "image/webp";
 
     return {
-      image: { base64: inline.data, mimeType },
+      image: {
+        base64: inline.data,
+        mimeType,
+      },
       provider: "google",
       model,
       estimatedCostUsd: IMAGE_COST_ESTIMATES[model] ?? 0.03,
