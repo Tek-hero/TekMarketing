@@ -8,7 +8,7 @@ export async function POST(
   try {
     const { id } = await params
     const body = await request.json().catch(() => ({}))
-    const { scheduledFor } = body
+    const { scheduledFor } = body // optional
 
     const updated = await prisma.contentItem.update({
       where: { id },
@@ -16,14 +16,15 @@ export async function POST(
         status: scheduledFor ? 'SCHEDULED' : 'APPROVED',
         approvedAt: new Date(),
         approvedBy: 'user',
-        scheduledFor: scheduledFor ? new Date(scheduledFor) : new Date(Date.now() + 1000 * 60 * 30),
+        scheduledFor: scheduledFor ? new Date(scheduledFor) : new Date(Date.now() + 1000 * 60 * 30), // default: 30 min from now if not specified
       },
     })
 
+    // Log the action
     await prisma.activityLog.create({
       data: {
         type: 'CONTENT_APPROVED',
-        summary: `Approved ${updated.platform} ${updated.format.toLowerCase()}`,
+        summary: `Approved ${updated.platform} ${updated.format.toLowerCase()} (scheduled for ${updated.scheduledFor?.toISOString()})`,
         details: { contentItemId: id, platform: updated.platform, scheduledFor: updated.scheduledFor },
         contentItemId: id,
       },

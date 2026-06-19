@@ -22,7 +22,11 @@ export async function POST(
       data: {
         type: 'CONTENT_REJECTED',
         summary: `Rejected ${updated.platform} content`,
-        details: { contentItemId: id, platform: updated.platform, feedback: feedback || null },
+        details: { 
+          contentItemId: id, 
+          platform: updated.platform,
+          feedback: feedback || null 
+        },
         contentItemId: id,
       },
     })
